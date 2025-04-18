@@ -9,11 +9,14 @@ export default function Home() {
   const handleClassify = (e: React.FormEvent) => {
     e.preventDefault();
     const fetchData = async () => {
-      const res = await fetch("https://emotion-backend-5af8.onrender.com/predict", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text }),
-      });
+      const res = await fetch(
+        "https://emotion-backend-5af8.onrender.com/predict",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text }),
+        },
+      );
 
       const data = await res.json();
       setEmotion(data.emotion_label);
@@ -25,7 +28,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-8 pt-10">
+    <div className="flex flex-col items-center min-h-screen p-8 pt-14">
       <h1 className="text-gibraltar font-pixelify text-4xl">
         Emotion Classification
       </h1>
@@ -59,7 +62,7 @@ export default function Home() {
           <textarea
             placeholder="Your Emotion text..."
             onChange={(e) => setText(e.target.value)}
-            className="w-full max-w-3xl text-center text-[20px] px-6 py-3 bg-white border-[4px] border-gibraltar placeholder:text-gibraltar text-gibraltar font-pixelify focus:outline-none rounded-lg min-h-[60px] max-h-[300px]"
+            className="w-full max-w-3xl text-center text-[20px] px-6 py-3 bg-white border-[4px] border-gibraltar placeholder:text-gibraltar text-gibraltar font-pixelify focus:outline-none rounded-lg min-h-[60px] max-h-[200px]"
           ></textarea>
           <button
             type="submit"

@@ -14,6 +14,7 @@
   --color-blancdeblanc: #e7eae7;
   --color-blueheaven: #5b809a;
   --color-midnight: #17161d;
+  --color-redlight: #fc4871;
 }
 
 @media (prefers-color-scheme: dark) {

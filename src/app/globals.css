@@ -1,7 +1,5 @@
 @import "tailwindcss";
-
 :root {
-  --background: #ffffff;
   --foreground: #171717;
 }
 
@@ -10,6 +8,12 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-pixelify: "Pixelify Sans", "monospace";
+  --color-gibraltar: #143951;
+  --color-citadel: #768997;
+  --color-blancdeblanc: #e7eae7;
+  --color-blueheaven: #5b809a;
+  --color-midnight: #17161d;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,7 +24,17 @@
 }
 
 body {
-  background: var(--background);
+  background-image: url("/background.png");
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  transition:
+    background-color 0.5s ease,
+    background-image 0.5s ease;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  cursor:
+    url("/cursor.svg") 0 0,
+    default;
 }

@@ -83,9 +83,9 @@ export default function Home() {
         </form>
       </section>
       {loading && (
-        <div className="absolute ease-in top-4 w-56 h-20 flex items-center justify-center bg-white border-[4px] border-gibraltar rounded-lg shadow-xl font-pixelify text-gibraltar text-xl">
+        <div className="fixed ease-in top-4 w-60 h-20 flex items-center justify-center bg-white border-[4px] border-gibraltar rounded-lg shadow-xl font-pixelify text-gibraltar text-xl">
           <span className="flex items-center justify-center gap-1 w-full h-full relative ">
-            {"Loading".split("").map((char, index) => (
+            {"Predicting".split("").map((char, index) => (
               <span
                 key={index}
                 className="inline-block animate-bounce"
@@ -96,9 +96,9 @@ export default function Home() {
                 {char}
               </span>
             ))}
-            <span className="block w-2 h-2 bg-gibraltar animate-bounce rounded-sm"></span>
-            <span className="block w-2 h-2 bg-gibraltar animate-bounce rounded-sm [animation-delay:0.2s]"></span>
-            <span className="block w-2 h-2 bg-gibraltar animate-bounce rounded-sm [animation-delay:0.4s]"></span>
+            <span className="block w-1 h-1 bg-gibraltar animate-bounce [animation-delay:2s]"></span>
+            <span className="block w-1 h-1 bg-gibraltar animate-bounce [animation-delay:2.2s]"></span>
+            <span className="block w-1 h-1 bg-gibraltar animate-bounce [animation-delay:2.4s]"></span>
             <span
               className="absolute block w-7 h-7 text-center text-gibraltar top-0 right-0 hover:bg-blancdeblanc hover:rounded-full cursor-pointer"
               onClick={() => setLoading(false)}

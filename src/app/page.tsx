@@ -66,7 +66,12 @@ export default function Home() {
           </div>
         </div>
         <form
-          onSubmit={handleClassify}
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (text && text.trim() !== "") {
+              handleClassify(e);
+            }
+          }}
           className="flex flex-col items-center w-full gap-4"
         >
           <textarea

@@ -6,22 +6,32 @@ export default function Home() {
   const [text, setText] = useState<string>();
   const [emotion, setEmotion] = useState<string[]>([]);
   const [emotionScores, setEmotionScores] = useState<number[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
   const handleClassify = (e: React.FormEvent) => {
     e.preventDefault();
-    const fetchData = async () => {
-      const res = await fetch(
-        "https://emotion-backend-5af8.onrender.com/predict",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text }),
-        },
-      );
+    setLoading(true);
 
-      const data = await res.json();
-      setEmotion(data.emotion_label);
-      setEmotionScores(data.emotion_scores);
-      console.log(data);
+    const fetchData = async () => {
+      try {
+        const res = await fetch(
+          "https://emotion-backend-5af8.onrender.com/predict",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text }),
+          },
+        );
+
+        const data = await res.json();
+        setEmotion(data.emotion_label);
+        setEmotionScores(data.emotion_scores);
+        console.log(data);
+      } catch (err) {
+        console.error("Fetch failed:", err);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchData();
@@ -72,6 +82,32 @@ export default function Home() {
           </button>
         </form>
       </section>
+      {loading && (
+        <div className="absolute ease-in top-4 w-56 h-20 flex items-center justify-center bg-white border-[4px] border-gibraltar rounded-lg shadow-xl font-pixelify text-gibraltar text-xl">
+          <span className="flex items-center justify-center gap-1 w-full h-full relative ">
+            {"Loading".split("").map((char, index) => (
+              <span
+                key={index}
+                className="inline-block animate-bounce"
+                style={{
+                  animationDelay: `${index * 0.2}s`,
+                }}
+              >
+                {char}
+              </span>
+            ))}
+            <span className="block w-2 h-2 bg-gibraltar animate-bounce rounded-sm"></span>
+            <span className="block w-2 h-2 bg-gibraltar animate-bounce rounded-sm [animation-delay:0.2s]"></span>
+            <span className="block w-2 h-2 bg-gibraltar animate-bounce rounded-sm [animation-delay:0.4s]"></span>
+            <span
+              className="absolute block w-7 h-7 text-center text-gibraltar top-0 right-0 hover:bg-blancdeblanc hover:rounded-full cursor-pointer"
+              onClick={() => setLoading(false)}
+            >
+              X
+            </span>
+          </span>
+        </div>
+      )}
     </div>
   );
 }

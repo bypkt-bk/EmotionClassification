@@ -38,7 +38,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-8 pt-14">
+    <div className="flex flex-col items-center min-h-screen p-8 pt-14 gap-4">
       <h1 className="text-gibraltar font-pixelify text-4xl">
         Emotion Classification
       </h1>
@@ -68,7 +68,7 @@ export default function Home() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (text && text.trim() !== "") {
+            if ((text && text.trim() !== "") || loading === false) {
               handleClassify(e);
             }
           }}
@@ -77,7 +77,7 @@ export default function Home() {
           <textarea
             placeholder="Your Emotion text..."
             onChange={(e) => setText(e.target.value)}
-            className="w-full max-w-3xl text-center text-[20px] px-6 py-3 bg-white border-[4px] border-gibraltar placeholder:text-gibraltar text-gibraltar font-pixelify focus:outline-none rounded-lg min-h-[60px] max-h-[200px]"
+            className="w-full max-w-3xl text-center text-[20px] px-6 py-3 bg-white border-[4px] border-gibraltar placeholder:text-gibraltar text-gibraltar font-pixelify focus:outline-none rounded-lg min-h-[60px] max-h-[180px]"
           ></textarea>
           <button
             type="submit"
